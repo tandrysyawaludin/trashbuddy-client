@@ -1,1 +1,1 @@
-export const urlMainAPI = 'http://185.201.9.200/'
+export const urlMainAPI = 'http://185.201.9.200'
