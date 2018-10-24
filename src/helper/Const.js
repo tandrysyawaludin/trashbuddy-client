@@ -1,0 +1,1 @@
+export default urlMainAPI = 'http://185.201.9.200/'

@@ -22,6 +22,7 @@ import axios from 'axios'
 import NavbarBottom from '../partials/NavbarBottom'
 import NavbarMain from '../partials/NavbarMain'
 import styles from '../css/Home.css'
+import { urlMainAPI } from '../helper/Const'
 
 class Home extends Component {
   state = {
@@ -51,7 +52,7 @@ class Home extends Component {
   getOptionsArea() {
     axios({
       method: 'GET',
-      url: '/areas'
+      url: `${urlMainAPI}/areas`
     })
     .then(response => {
       const DATA = []
@@ -75,7 +76,7 @@ class Home extends Component {
   getOptionsCategory() {
     axios({
       method: 'GET',
-      url: '/categories_of_trash'
+      url: `${urlMainAPI}/categories_of_trash`
     })
     .then(response => {
       const DATA = []

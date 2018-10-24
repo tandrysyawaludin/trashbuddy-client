@@ -17,15 +17,13 @@ import {
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import {
-  map,
-  size,
-  startCase
-} from 'lodash'
+import map from 'lodash/map'
+import startCase from 'lodash/startCase'
 import AsyncSelect from 'react-select/lib/Async'
 
 import NavbarWelcome from '../partials/NavbarWelcome'
 import loader from '../img/loader.svg'
+import { urlMainAPI } from '../helper/Const'
 
 import '../css/SignUp.css'
 class SignUp extends Component {
@@ -50,7 +48,7 @@ class SignUp extends Component {
   getOptionsArea() {
     axios({
       method: 'GET',
-      url: '/areas'
+      url: `${urlMainAPI}/areas`
     })
       .then(response => {
         this.setterDataAreas(response)        
@@ -81,7 +79,7 @@ class SignUp extends Component {
 
   loadOptionsArea = (input, callback) => {    
     const DATA = this.state.optionsArea    
-    if (size(input) > 3) {
+    if (input.length > 3) {
       let optionsArea = DATA.filter(i =>
         i.label.toLowerCase().includes(input.toLowerCase())
       )
@@ -133,7 +131,7 @@ class SignUp extends Component {
 
     axios({
       method: 'POST',
-      url: '/supplier',
+      url: `${urlMainAPI}/supplier`,
       data: data
     })
       .then(response => {

@@ -16,16 +16,14 @@ import NavbarBottom from '../partials/NavbarBottom'
 import NavbarMain from '../partials/NavbarMain'
 import styles from '../css/Setting.css'
 import { Auth } from '../helper/CheckAuth'
+import { urlMainAPI } from '../helper/Const'
 
 class Setting extends Component {
   handleSignOut = () => {
-    let data = {
-      is_valid: false
-    }
-
+    const data = { is_valid: false }
     axios({
       method: 'PUT',
-      url: '/signin_log/' + Cookies.get('auth_trashbuddy'),
+      url: `${urlMainAPI}/signin_log/${Cookies.get('auth_trashbuddy')}`,
       data: data
     })
       .then(response => {

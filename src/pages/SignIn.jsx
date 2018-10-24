@@ -28,6 +28,7 @@ import NavbarWelcome from '../partials/NavbarWelcome'
 import styles from '../css/SignIn.css'
 import loader from '../img/loader.svg'
 import { Auth } from '../helper/CheckAuth'
+import { urlMainAPI } from '../helper/Const'
 
 class SignIn extends Component {
   state = {
@@ -51,19 +52,15 @@ class SignIn extends Component {
     event.preventDefault()
     event.stopPropagation()
 
-    console.log('masuk')
-    
-
     this.setState({ submitting: true })
-
-    let data = {
+    const data = {
       email: toLower(this.state.email),
       password: this.state.password
     }
 
     axios({
       method: 'POST',
-      url: '/supplier/auth',
+      url: `${urlMainAPI}/supplier/auth`,
       data: data
     })
     .then(response => {
@@ -107,7 +104,7 @@ class SignIn extends Component {
   handleSaveToken(data) {
     axios({
       method: 'POST',
-      url: '/signin_log',
+      url: `${urlMainAPI}/signin_log`,
       data: data
     })
       .then(response => {
