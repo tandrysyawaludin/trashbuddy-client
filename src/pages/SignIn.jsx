@@ -63,29 +63,29 @@ class SignIn extends Component {
       url: `${urlMainAPI}/supplier/auth`,
       data: data
     })
-    .then(response => {
-      this.handleAuthSuccess(response)
-    })
-    .catch(error => {
-      this.handleAuthFailed()
-    })
-    .then(() => {
-      this.setState({ submitting: false })
-    })
+      .then(response => {
+        this.handleAuthSuccess(response)
+      })
+      .catch(error => {
+        this.handleAuthFailed()
+      })
+      .then(() => {
+        this.setState({ submitting: false })
+      })
   }
 
-  handleAuthSuccess(response) {
+  handleAuthSuccess(res) {
     let data = {}
-    if (response.data.success === true) {
+    if (res.data.success === true) {
       data = {
-        user_id: response.data.data.id,
-        token: response.data.jwt,
+        user_id: res.data.data.id,
+        token: res.data.jwt,
         is_valid: true
       }
       this.handleSaveToken(data)
     }
     else {
-      this.setState({ errorSignIn: true, errorSignInMessage: "Email and password do not match" })
+      this.setState({ errorSignIn: true, errorSignInMessage: res.data.message })
       let cookies = Cookies.get()
       mapKeys(cookies, (val, key) => {
         Cookies.remove(key)
@@ -132,22 +132,33 @@ class SignIn extends Component {
     <Form onSubmit={this.handleSignIn}>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" placeholder="please input valid email" onChange={this.handleInputChange} />
+        <Input
+          type="email"
+          name="email"
+          placeholder="please input valid email"
+          onChange={this.handleInputChange}
+          required="required"
+        />
       </FormGroup>
       <FormGroup>
         <Label for="exampleEmail">Password</Label>
-        <Input type="password" name="password"
-          placeholder="input your password" onChange={this.handleInputChange} />
+        <Input
+          type="password"
+          name="password"
+          placeholder="input your password"
+          onChange={this.handleInputChange}
+          required="required"
+        />
       </FormGroup>
       <CardText>
         <small className="text-muted">Click Sign In button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
       </CardText>
       <FormGroup>
-        <Button 
-          color="main" 
-          size="md" 
+        <Button
+          color="main"
+          size="md"
           block
-          type="submit" 
+          type="submit"
           disabled={this.state.submitting}
         >
           {this.state.submitting ? <img src={loader} /> : "Sign In"}
@@ -167,27 +178,25 @@ class SignIn extends Component {
   )
 
   render() {
-    return (
-      <Fragment>
-        <NavbarWelcome />
-        <div styleName="SignIn">
-          <Container className="singin-form-container">
-            <Row>
-              <Col md={{ size: 6, offset: 3 }}>
-                {this.renderAlert()}
-                <Card>
-                  <CardBody>
-                    <CardTitle className="text-center">Sign iIn</CardTitle>
-                    {this.renderFormSignin()}
-                    {this.renderLinks()}
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </Fragment>
-    )
+    return <Fragment>
+      <NavbarWelcome />
+      <div styleName="SignIn">
+        <Container className="singin-form-container">
+          <Row>
+            <Col md={{ size: 6, offset: 3 }}>
+              {this.renderAlert()}
+              <Card>
+                <CardBody>
+                  <CardTitle className="text-center">Sign iIn</CardTitle>
+                  {this.renderFormSignin()}
+                  {this.renderLinks()}
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </Fragment>
   }
 }
 

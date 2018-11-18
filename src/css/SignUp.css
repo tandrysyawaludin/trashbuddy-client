@@ -1,2 +1,2 @@
-.singup-form-container {
-  padding-top: 30px; }
+:local(.SignUp) .singup-form-container {
+  padding-top: 50px; }

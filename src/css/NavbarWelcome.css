@@ -2,7 +2,10 @@
   background: #fdfdfd;
   border-bottom: 1px solid #adadad;
   height: 35px;
-  padding: 0; }
+  padding: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 2; }
   :local .NavbarWelcome .navbar-brand {
     vertical-align: middle;
     margin: 0 auto; }

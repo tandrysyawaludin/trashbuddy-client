@@ -11,13 +11,11 @@ import styles from '../css/NavbarWelcome.css';
 import mainLogo from '../img/logo.png'
 class NavbarWelcome extends Component {
   render() {
-    return (
-      <Navbar light expand="md" styleName="NavbarWelcome">
-        <NavbarBrand href="/" styleName="navbar-brand">
-          <img src={mainLogo} /><span>Trashbuddy</span>
-        </NavbarBrand>          
-      </Navbar>
-    )
+    return <Navbar light expand="md" styleName="NavbarWelcome" fixed="top">
+      <NavbarBrand href="/" styleName="navbar-brand">
+        <img src={mainLogo} /><span>Trashbuddy</span>
+      </NavbarBrand>
+    </Navbar>
   }
 }
 

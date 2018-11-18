@@ -3,13 +3,19 @@
   border-bottom: 1px solid #adadad;
   height: 35px;
   padding: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+
   .navbar-brand {
     vertical-align: middle;
     margin: 0 auto;
+
     img {
       margin-right: 6px;
       height: 34px;
     }
+
     span {
       vertical-align: middle;
       font-weight: 700;

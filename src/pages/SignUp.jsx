@@ -19,13 +19,13 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import map from 'lodash/map'
 import startCase from 'lodash/startCase'
+import CSSModules from 'react-css-modules'
 import AsyncSelect from 'react-select/lib/Async'
 
 import NavbarWelcome from '../partials/NavbarWelcome'
 import loader from '../img/loader.svg'
 import { urlMainAPI } from '../helper/Const'
-
-import '../css/SignUp.css'
+import styles from '../css/SignUp.css'
 class SignUp extends Component {
   state = {
     email: "",
@@ -51,7 +51,7 @@ class SignUp extends Component {
       url: `${urlMainAPI}/areas`
     })
       .then(response => {
-        this.setterDataAreas(response)        
+        this.setterDataAreas(response)
       })
       .catch(error => {
         console.log(error)
@@ -70,15 +70,15 @@ class SignUp extends Component {
         "label": area
       })
     })
-    this.setState({ optionsArea: DATA })   
+    this.setState({ optionsArea: DATA })
   }
 
   handleChangeArea = (area) => {
     this.setState({ area: area.value })
   }
 
-  loadOptionsArea = (input, callback) => {    
-    const DATA = this.state.optionsArea    
+  loadOptionsArea = (input, callback) => {
+    const DATA = this.state.optionsArea
     if (input.length > 3) {
       let optionsArea = DATA.filter(i =>
         i.label.toLowerCase().includes(input.toLowerCase())
@@ -93,8 +93,6 @@ class SignUp extends Component {
     const value = event.target.value
     const name = event.target.name
 
-    console.log(value, name);
-    
     this.setState({
       [name]: value
     }, () => {
@@ -107,6 +105,15 @@ class SignUp extends Component {
           this.setState({ errorSignUp: false })
       }
     })
+  }
+
+  handleSuccessSignUp = (res) => {
+    if (res.data.success) {
+      this.props.history.push('/')
+    }
+    else {
+      this.setState({ errorSignUp: true, errorSignUpMessage: res.data.message })
+    }
   }
 
   handleSubmit = (event) => {
@@ -134,8 +141,8 @@ class SignUp extends Component {
       url: `${urlMainAPI}/supplier`,
       data: data
     })
-      .then(response => {
-        this.props.history.push('/')
+      .then(res => {
+        this.handleSuccessSignUp(res)
       })
       .catch(error => {
 
@@ -149,42 +156,53 @@ class SignUp extends Component {
     this.setState({ errorSignUp: false })
   }
 
+  renderAlert = () => (
+    <Alert color="danger" isOpen={this.state.errorSignUp} toggle={this.handleShowAlert}>
+      {this.state.errorSignUpMessage}
+    </Alert>
+  )
+
   renderFormSignUp = () => (
     <Form onSubmit={this.handleSubmit}>
       <FormGroup>
         <Label>Email</Label>
-        <Input 
-          type="email" 
-          name="email" 
-          placeholder="please input valid email" 
-          onChange={this.handleInputChange} 
+        <Input
+          required="required"
+          type="email"
+          name="email"
+          placeholder="please input valid email"
+
+          onChange={this.handleInputChange}
         />
       </FormGroup>
       <FormGroup>
         <Label>Password</Label>
-        <Input 
-          type="password" 
-          name="password" 
-          placeholder="input your password" 
-          onChange={this.handleInputChange} 
+        <Input
+          required="required"
+          type="password"
+          name="password"
+          placeholder="input your password"
+          onChange={this.handleInputChange}
         />
       </FormGroup>
       <FormGroup>
         <Label>Confirmation Password</Label>
-        <Input 
-          type="password" 
-          name="password_1" 
-          placeholder="input your password again" 
-          onChange={this.handleInputChange} 
+        <Input
+          required="required"
+          type="password"
+          name="password_1"
+          placeholder="input your password again"
+          onChange={this.handleInputChange}
         />
       </FormGroup>
       <FormGroup>
         <Label>Full Name</Label>
-        <Input 
-          type="text" 
-          name="full_name" 
-          placeholder="input your full name" 
-          onChange={this.handleInputChange} 
+        <Input
+          required="required"
+          type="text"
+          name="full_name"
+          placeholder="input your full name"
+          onChange={this.handleInputChange}
         />
       </FormGroup>
       <FormGroup>
@@ -201,19 +219,33 @@ class SignUp extends Component {
       </FormGroup>
       <FormGroup>
         <Label>Address</Label>
-        <Input type="textarea" name="address" placeholder="input your address" onChange={this.handleInputChange} />
+        <Input
+          required="required"
+          type="textarea"
+          name="address"
+          placeholder="input your address"
+          onChange={this.handleInputChange}
+        />
       </FormGroup>
       <FormGroup>
         <Label>Phone Number</Label>
-        <Input type="text" name="phone_number" placeholder="input your active phone number" onChange={this.handleInputChange} />
+        <Input
+          required="required"
+          type="text"
+          name="phone_number"
+          placeholder="input your active phone number"
+          onChange={this.handleInputChange}
+        />
       </FormGroup>
       <CardText>
-        <small className="text-muted">Click Sign Up button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
+        <small className="text-muted">
+          Click Sign Up button is accept our <CardLink href="#">Terms and Privacy</CardLink>
+        </small>
       </CardText>
       <FormGroup>
-        <Button 
-          color="main" 
-          size="md" 
+        <Button
+          color="main"
+          size="md"
           block
           disabled={this.state.submitting}
         >
@@ -233,15 +265,13 @@ class SignUp extends Component {
   )
 
   render() {
-    return (
-      <Fragment>
-        <NavbarWelcome atSignUpPage={true} />
+    return <Fragment>
+      <NavbarWelcome atSignUpPage={true} />
+      <div styleName="SignUp">
         <Container className="singup-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
-              <Alert color="danger" isOpen={this.state.errorSignUp} toggle={this.handleShowAlert}>
-                {this.state.errorSignUpMessage}
-              </Alert>
+              {this.renderAlert()}
               <Card>
                 <CardBody>
                   <CardTitle className="text-center">Sign Up</CardTitle>
@@ -252,9 +282,9 @@ class SignUp extends Component {
             </Col>
           </Row>
         </Container>
-      </Fragment>
-    )
+      </div>
+    </Fragment>
   }
 }
 
-export default SignUp
+export default CSSModules(SignUp, styles, { allowMultiple: true })
