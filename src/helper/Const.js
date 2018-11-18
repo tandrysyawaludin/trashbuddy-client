@@ -1,1 +1,1 @@
-export const urlMainAPI = 'http://localhost:8000'
+export const urlMainAPI = 'https://trashbuddy-api.herokuapp.com'
