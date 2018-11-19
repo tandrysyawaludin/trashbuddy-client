@@ -12,8 +12,7 @@ import {
   FormGroup,
   Label,
   Input,
-  Button,
-  Alert
+  Button
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -22,6 +21,7 @@ import startCase from 'lodash/startCase'
 import CSSModules from 'react-css-modules'
 import AsyncSelect from 'react-select/lib/Async'
 
+import Notify from '../partials/Notify'
 import NavbarWelcome from '../partials/NavbarWelcome'
 import loader from '../img/loader.svg'
 import { urlMainAPI } from '../helper/Const'
@@ -145,7 +145,7 @@ class SignUp extends Component {
         this.handleSuccessSignUp(res)
       })
       .catch(error => {
-
+        this.setState({ errorSignUp: true, errorSignUpMessage: "Sorry, our system is busy now :(" })
       })
       .then(() => {
         this.setState({ submitting: false })
@@ -157,9 +157,12 @@ class SignUp extends Component {
   }
 
   renderAlert = () => (
-    <Alert color="danger" isOpen={this.state.errorSignUp} toggle={this.handleShowAlert}>
-      {this.state.errorSignUpMessage}
-    </Alert>
+    <Notify
+      type="danger"
+      isOpen={this.state.errorSignUp}
+      toggle={this.handleShowAlert}
+      message={this.state.errorSignUpMessage}
+    />
   )
 
   renderFormSignUp = () => (
@@ -266,12 +269,12 @@ class SignUp extends Component {
 
   render() {
     return <Fragment>
+      {this.renderAlert()}
       <NavbarWelcome atSignUpPage={true} />
       <div styleName="SignUp">
         <Container className="singup-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
-              {this.renderAlert()}
               <Card>
                 <CardBody>
                   <CardTitle className="text-center">Sign Up</CardTitle>

@@ -1,0 +1,7 @@
+:local(.Notify) {
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}

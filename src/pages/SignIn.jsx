@@ -12,18 +12,16 @@ import {
   FormGroup,
   Label,
   Input,
-  Button,
-  Alert
+  Button
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import CSSModules from 'react-css-modules'
 import * as Cookies from "js-cookie"
-import {
-  mapKeys,
-  toLower
-} from 'lodash'
+import toLower from 'lodash/toLower'
+import mapKeys from 'lodash/mapKeys'
 
+import Notify from '../partials/Notify'
 import NavbarWelcome from '../partials/NavbarWelcome'
 import styles from '../css/SignIn.css'
 import loader from '../img/loader.svg'
@@ -123,9 +121,12 @@ class SignIn extends Component {
   }
 
   renderAlert = () => (
-    <Alert color="danger" isOpen={this.state.errorSignIn} toggle={this.handleShowAlert}>
-      {this.state.errorSignInMessage}
-    </Alert>
+    <Notify
+      type="danger"
+      isOpen={this.state.errorSignIn}
+      toggle={this.handleShowAlert}
+      message={this.state.errorSignInMessage}
+    />
   )
 
   renderFormSignin = () => (
@@ -179,12 +180,12 @@ class SignIn extends Component {
 
   render() {
     return <Fragment>
+      {this.renderAlert()}
       <NavbarWelcome />
       <div styleName="SignIn">
         <Container className="singin-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
-              {this.renderAlert()}
               <Card>
                 <CardBody>
                   <CardTitle className="text-center">Sign iIn</CardTitle>
