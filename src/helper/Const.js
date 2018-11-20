@@ -1,1 +1,1 @@
-export const urlMainAPI = 'https://trashbuddy-api.herokuapp.comm'
+export const urlMainAPI = 'https://trashbuddy-api.herokuapp.com'
