@@ -21,12 +21,11 @@ import * as Cookies from "js-cookie"
 import toLower from 'lodash/toLower'
 import mapKeys from 'lodash/mapKeys'
 
-import Notify from '../partials/Notify'
-import NavbarWelcome from '../partials/NavbarWelcome'
 import styles from '../css/SignIn.css'
 import loader from '../img/loader.svg'
+import Notify from '../partials/Notify'
+import NavbarWelcome from '../partials/NavbarWelcome'
 import { Auth } from '../helper/CheckAuth'
-import { urlMainAPI } from '../helper/Const'
 
 class SignIn extends Component {
   state = {
@@ -34,7 +33,7 @@ class SignIn extends Component {
     password: "",
     errorSignIn: false,
     errorSignInMessage: "",
-    submitting: false,
+    submitting: false
   }
 
   handleInputChange = (event) => {
@@ -58,7 +57,7 @@ class SignIn extends Component {
 
     axios({
       method: 'POST',
-      url: `${urlMainAPI}/supplier/auth`,
+      url: `${process.env.REACT_APP_URL_MAIN_API}/supplier/auth`,
       data: data
     })
       .then(response => {
@@ -102,7 +101,7 @@ class SignIn extends Component {
   handleSaveToken(data) {
     axios({
       method: 'POST',
-      url: `${urlMainAPI}/signin_log`,
+      url: `${process.env.REACT_APP_URL_MAIN_API}/signin_log`,
       data: data
     })
       .then(response => {

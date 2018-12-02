@@ -1,1 +1,2 @@
-export const urlMainAPI = 'https://trashbuddy-api.herokuapp.com'
+// In this file add your constanta variable
+// Syntax example: export const host = 'localhost'

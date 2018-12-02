@@ -7,6 +7,7 @@
     "babel-cli": "^6.26.0",
     "bootstrap": "^4.1.1",
     "css-loader": "^0.28.11",
+    "dotenv": "^6.1.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "js-cookie": "^2.2.0",
@@ -27,11 +28,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cp ./.env .env && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/scss/ -o src/css/",
     "watch-css": "npm run build-css && node-sass-chokidar src/scss/ -o src/css/ --watch --recursive",
-    "dev": "npm run start & npm run watch-css"
+    "dev": "cp ./.env .env & npm run start & npm run watch-css"
   }
 }

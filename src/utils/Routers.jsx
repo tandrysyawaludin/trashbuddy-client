@@ -1,62 +1,61 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Home from '../pages/Home';
-import Setting from '../pages/Setting';
-import Offer from '../pages/Offer';
-import Blank from '../pages/Blank';
-import ListOfPartners from '../pages/ListOfPartners';
-import MyAd from '../pages/MyAd';
-
-import { Auth } from '../helper/CheckAuth';
+import SignIn from '../pages/SignIn'
+import SignUp from '../pages/SignUp'
+import Home from '../pages/Home'
+import Setting from '../pages/Setting'
+import Offer from '../pages/Offer'
+import Blank from '../pages/Blank'
+import ListOfPartners from '../pages/ListOfPartners'
+import MyAd from '../pages/MyAd'
+import { Auth } from '../helper/CheckAuth'
+import ErrorBoundary from '../utils/ErrorBoundary'
 
 const NoMatch = ({ location }) => (
   <div>
     Ups! page is not found
   </div>
-);
+)
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      Auth.isAuthenticated ? (
+      Auth.isAuthenticated ?
         <Component {...props} />
-      ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: props.location }
-            }}
-          />
-        )
+        :
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { from: props.location }
+          }}
+        />
+
     }
   />
-);
+)
 
 const PublicRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      Auth.isAuthenticated ? (
+      Auth.isAuthenticated ?
         <Redirect
           to={{
             pathname: "/home",
             state: { from: props.location }
           }}
         />
-      ) : (
+        :
         <Component {...props} />
-      )
     }
   />
-);
+)
 
 class Routers extends Component {
   render() {
-    return (
+    return <ErrorBoundary>
       <Router>
         <Switch>
           <PublicRoute exact path="/" component={SignIn} />
@@ -70,8 +69,8 @@ class Routers extends Component {
           <Route component={NoMatch} />
         </Switch>
       </Router>
-    )
+    </ErrorBoundary>
   }
 }
 
-export default Routers;
+export default Routers

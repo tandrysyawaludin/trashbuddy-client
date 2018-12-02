@@ -24,7 +24,6 @@ import AsyncSelect from 'react-select/lib/Async'
 import Notify from '../partials/Notify'
 import NavbarWelcome from '../partials/NavbarWelcome'
 import loader from '../img/loader.svg'
-import { urlMainAPI } from '../helper/Const'
 import styles from '../css/SignUp.css'
 class SignUp extends Component {
   state = {
@@ -48,7 +47,7 @@ class SignUp extends Component {
   getOptionsArea() {
     axios({
       method: 'GET',
-      url: `${urlMainAPI}/areas`
+      url: `${process.env.REACT_APP_URL_MAIN_API}/areas`
     })
       .then(response => {
         this.setterDataAreas(response)
@@ -138,7 +137,7 @@ class SignUp extends Component {
 
     axios({
       method: 'POST',
-      url: `${urlMainAPI}/supplier`,
+      url: `${process.env.REACT_APP_URL_MAIN_API}/supplier`,
       data: data
     })
       .then(res => {
