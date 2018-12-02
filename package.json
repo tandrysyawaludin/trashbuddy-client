@@ -33,6 +33,6 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/scss/ -o src/css/",
     "watch-css": "npm run build-css && node-sass-chokidar src/scss/ -o src/css/ --watch --recursive",
-    "dev": "cp ./.env .env & npm run start & npm run watch-css"
+    "dev": "npm run start & npm run watch-css"
   }
 }
