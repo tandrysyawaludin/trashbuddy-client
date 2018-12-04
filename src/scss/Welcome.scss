@@ -1,0 +1,55 @@
+@import './Colors.scss';
+
+:local(.Welcome) {
+  .container {
+    padding-top: 50px;
+  }
+
+  a,
+  a:hover {
+    text-decoration: none;
+  }
+
+  .right-side {
+    padding-top: 30px;
+
+    .anchor-as {
+      text-align: center;
+      font-size: 20px;
+      padding: 16px;
+
+      &.supplier {
+        border-radius: 4px;
+        color: white;
+        background: $main-color;
+      }
+
+      &.partner {
+        color: $main-color;
+        background: white;
+        border: 2px solid;
+      }
+    }
+
+    .or-separator {
+      text-align: center;
+      background: white;
+      line-height: 50px;
+    }
+
+    .quote-container {
+      text-align: center;
+      margin-top: 30px;
+
+      .quote {
+        font-size: 18px;
+        color: $main-color;
+      }
+
+      .sub-qoute {
+        font-size: 14px;
+      }
+    }
+  }
+
+}

@@ -12,7 +12,8 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
+  Badge
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -27,12 +28,12 @@ import Notify from '../partials/Notify'
 import NavbarWelcome from '../partials/Navbar/NavbarWelcome'
 import { Auth } from '../helper/CheckAuth'
 
-class SignIn extends Component {
+class SignInPartner extends Component {
   state = {
     email: "",
     password: "",
-    errorSignIn: false,
-    errorSignInMessage: "",
+    errorSignInPartner: false,
+    errorSignInPartnerMessage: "",
     submitting: false
   }
 
@@ -45,7 +46,7 @@ class SignIn extends Component {
     })
   }
 
-  handleSignIn = (event) => {
+  handleSignInPartner = (event) => {
     event.preventDefault()
     event.stopPropagation()
 
@@ -57,7 +58,7 @@ class SignIn extends Component {
 
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_URL_MAIN_API}/supplier/auth`,
+      url: `${process.env.REACT_APP_URL_MAIN_API}/partner/auth`,
       data: data
     })
       .then(response => {
@@ -82,7 +83,7 @@ class SignIn extends Component {
       this.handleSaveToken(data)
     }
     else {
-      this.setState({ errorSignIn: true, errorSignInMessage: res.data.message })
+      this.setState({ errorSignInPartner: true, errorSignInPartnerMessage: res.data.message })
       let cookies = Cookies.get()
       mapKeys(cookies, (val, key) => {
         Cookies.remove(key)
@@ -91,7 +92,7 @@ class SignIn extends Component {
   }
 
   handleAuthFailed() {
-    this.setState({ errorSignIn: true, errorSignInMessage: "Sorry, our system is busy now :(" })
+    this.setState({ errorSignInPartner: true, errorSignInPartnerMessage: "Sorry, our system is busy now :(" })
     let cookies = Cookies.get()
     mapKeys(cookies, (val, key) => {
       Cookies.remove(key)
@@ -116,20 +117,20 @@ class SignIn extends Component {
   }
 
   handleShowAlert = () => {
-    this.setState({ errorSignIn: false })
+    this.setState({ errorSignInPartner: false })
   }
 
   renderAlert = () => (
     <Notify
       type="danger"
-      isOpen={this.state.errorSignIn}
+      isOpen={this.state.errorSignInPartner}
       toggle={this.handleShowAlert}
-      message={this.state.errorSignInMessage}
+      message={this.state.errorSignInPartnerMessage}
     />
   )
 
-  renderFormSignin = () => (
-    <Form onSubmit={this.handleSignIn}>
+  renderFormSignInPartner = () => (
+    <Form onSubmit={this.handleSignInPartner}>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
         <Input
@@ -172,7 +173,7 @@ class SignIn extends Component {
       <small className="text-muted">
         <Link to="/">About</Link>
         {} . <Link to="/">Forgot Password?</Link>
-        {} . <Link to="/sign_up">Sign Up</Link>
+        {} . <Link to="/sign_up_partner">Sign Up</Link>
       </small>
     </CardText>
   )
@@ -187,8 +188,10 @@ class SignIn extends Component {
             <Col md={{ size: 6, offset: 3 }}>
               <Card>
                 <CardBody>
-                  <CardTitle className="text-center">Sign In</CardTitle>
-                  {this.renderFormSignin()}
+                  <CardTitle className="text-center">
+                    Sign In <Badge color="secondary" className="badge-partner">Partner</Badge>
+                  </CardTitle>
+                  {this.renderFormSignInPartner()}
                   {this.renderLinks()}
                 </CardBody>
               </Card>
@@ -200,4 +203,4 @@ class SignIn extends Component {
   }
 }
 
-export default CSSModules(SignIn, styles, { allowMultiple: true })
+export default CSSModules(SignInPartner, styles, { allowMultiple: true })

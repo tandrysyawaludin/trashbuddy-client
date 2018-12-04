@@ -12,7 +12,9 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
+  Badge,
+  Alert
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -25,7 +27,7 @@ import Notify from '../partials/Notify'
 import NavbarWelcome from '../partials/Navbar/NavbarWelcome'
 import loader from '../img/loader.svg'
 import styles from '../css/SignUp.css'
-class SignUp extends Component {
+class SignUpPartner extends Component {
   state = {
     email: "",
     password: "",
@@ -34,9 +36,10 @@ class SignUp extends Component {
     phone_number: "",
     area: "",
     address: "",
-    errorSignUpMessage: "",
-    errorSignUp: false,
+    errorSignUpPartnerMessage: "",
+    errorSignUpPartner: false,
     submitting: false,
+    successSignUpPartner: false,
     optionsArea: []
   }
 
@@ -98,22 +101,39 @@ class SignUp extends Component {
       if (name === "password" || name === "password_1") {
         (this.state.password !== this.state.password_1) ?
           this.setState({
-            errorSignUpMessage: "Password and Confirmation Password are not match",
-            errorSignUp: true
+            errorSignUpPartnerMessage: "Password and Confirmation Password are not match",
+            errorSignUpPartner: true
           }) :
-          this.setState({ errorSignUp: false })
+          this.setState({ errorSignUpPartner: false })
       }
     })
   }
 
-  handleSuccessSignUp = (res) => {
+  handleSuccessSignUpPartner = (res) => {
     if (res.data.success) {
-      this.props.history.push('/')
+      this.setState({
+        successSignUpPartner: true
+      })
     }
     else {
-      this.setState({ errorSignUp: true, errorSignUpMessage: res.data.message })
+      this.setState({
+        errorSignUpPartner: true,
+        errorSignUpPartnerMessage: res.data.message
+      })
     }
   }
+
+  renderSuccessMsg = () => (
+    <div className="success-msg">
+      <Alert color="success">
+        Sounds good, our team will be contact you for activate your account via your email or phone number as soon as possible.
+      </Alert>
+      <Link to="/"><Button color="link">Goto Home</Button></Link>/
+      <Link to="/sign_in_partner">
+        <Button color="link">Sign In Partner</Button>
+      </Link>
+    </div>
+  )
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -137,14 +157,14 @@ class SignUp extends Component {
 
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_URL_MAIN_API}/supplier`,
+      url: `${process.env.REACT_APP_URL_MAIN_API}/partner`,
       data: data
     })
       .then(res => {
-        this.handleSuccessSignUp(res)
+        this.handleSuccessSignUpPartner(res)
       })
       .catch(error => {
-        this.setState({ errorSignUp: true, errorSignUpMessage: "Sorry, our system is busy now :(" })
+        this.setState({ errorSignUpPartner: true, errorSignUpPartnerMessage: "Sorry, our system is busy now :(" })
       })
       .then(() => {
         this.setState({ submitting: false })
@@ -152,19 +172,19 @@ class SignUp extends Component {
   }
 
   handleShowAlert = () => {
-    this.setState({ errorSignUp: false })
+    this.setState({ errorSignUpPartner: false })
   }
 
   renderAlert = () => (
     <Notify
       type="danger"
-      isOpen={this.state.errorSignUp}
+      isOpen={this.state.errorSignUpPartner}
       toggle={this.handleShowAlert}
-      message={this.state.errorSignUpMessage}
+      message={this.state.errorSignUpPartnerMessage}
     />
   )
 
-  renderFormSignUp = () => (
+  renderFormSignUpPartner = () => (
     <Form onSubmit={this.handleSubmit}>
       <FormGroup>
         <Label>Email</Label>
@@ -261,7 +281,7 @@ class SignUp extends Component {
     <CardText>
       <small className="text-muted">
         <Link to="/">About</Link>
-        {} . <Link to="/sign_in">Sign In</Link>
+        {} . <Link to="/sign_in_partner">Sign In</Link>
       </small>
     </CardText>
   )
@@ -269,18 +289,24 @@ class SignUp extends Component {
   render() {
     return <Fragment>
       {this.renderAlert()}
-      <NavbarWelcome atSignUpPage={true} />
+      <NavbarWelcome atSignUpPartnerPage={true} />
       <div styleName="SignUp">
         <Container>
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
-              <Card>
-                <CardBody>
-                  <CardTitle className="text-center">Sign Up</CardTitle>
-                  {this.renderFormSignUp()}
-                  {this.renderLinks()}
-                </CardBody>
-              </Card>
+              {
+                this.state.successSignUpPartner ?
+                  this.renderSuccessMsg() :
+                  <Card>
+                    <CardBody>
+                      <CardTitle className="text-center">
+                        Sign Up <Badge color="secondary" className="badge-partner">Partner</Badge>
+                      </CardTitle>
+                      {this.renderFormSignUpPartner()}
+                      {this.renderLinks()}
+                    </CardBody>
+                  </Card>
+              }
             </Col>
           </Row>
         </Container>
@@ -289,4 +315,4 @@ class SignUp extends Component {
   }
 }
 
-export default CSSModules(SignUp, styles, { allowMultiple: true })
+export default CSSModules(SignUpPartner, styles, { allowMultiple: true })

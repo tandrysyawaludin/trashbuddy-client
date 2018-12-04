@@ -10,8 +10,8 @@ import {
 import { Link } from 'react-router-dom'
 import CSSModules from 'react-css-modules'
 
-import NavbarBottom from '../partials/NavbarBottom'
-import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/Navbar/NavbarBottom'
+import NavbarMain from '../partials/Navbar/NavbarMain'
 import styles from '../css/Offer.css'
 
 import { Auth } from '../helper/CheckAuth'

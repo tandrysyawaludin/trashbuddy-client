@@ -1,6 +1,6 @@
 @import './Colors.scss';
 
-:local .ToggleButton {
+:local(.ToggleButton) {
   .switch {
     position: relative;
     display: inline-block;

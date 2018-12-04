@@ -19,8 +19,8 @@ import startCase from 'lodash/startCase'
 import upperCase from 'lodash/upperCase'
 import axios from 'axios'
 
-import NavbarBottom from '../partials/NavbarBottom'
-import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/Navbar/NavbarBottom'
+import NavbarMain from '../partials/Navbar/NavbarMain'
 import styles from '../css/Home.css'
 
 class Home extends Component {

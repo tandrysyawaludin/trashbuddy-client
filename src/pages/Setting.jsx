@@ -12,8 +12,8 @@ import CSSModules from 'react-css-modules'
 import axios from 'axios'
 import * as Cookies from "js-cookie"
 
-import NavbarBottom from '../partials/NavbarBottom'
-import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/Navbar/NavbarBottom'
+import NavbarMain from '../partials/Navbar/NavbarMain'
 import styles from '../css/Setting.css'
 import { Auth } from '../helper/CheckAuth'
 
