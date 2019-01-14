@@ -22,7 +22,7 @@ import CSSModules from 'react-css-modules'
 import AsyncSelect from 'react-select/lib/Async'
 
 import Notify from '../partials/Notify'
-import NavbarWelcome from '../partials/Navbar/NavbarWelcome'
+import NavbarWelcome from '../partials/NavbarWelcome'
 import loader from '../img/loader.svg'
 import styles from '../css/SignUp.css'
 class SignUp extends Component {
@@ -261,7 +261,7 @@ class SignUp extends Component {
     <CardText>
       <small className="text-muted">
         <Link to="/">About</Link>
-        {} . <Link to="/sign_in">Sign In</Link>
+        {} . <Link to="/">Sign In</Link>
       </small>
     </CardText>
   )
@@ -271,7 +271,7 @@ class SignUp extends Component {
       {this.renderAlert()}
       <NavbarWelcome atSignUpPage={true} />
       <div styleName="SignUp">
-        <Container>
+        <Container className="singup-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
               <Card>

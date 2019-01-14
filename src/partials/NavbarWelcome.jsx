@@ -7,12 +7,12 @@ import {
 import { Link } from 'react-router-dom';
 import CssModules from 'react-css-modules';
 
-import styles from '../../css/NavbarWelcome.css';
-import mainLogo from '../../img/logo.png'
+import styles from '../css/NavbarWelcome.css';
+import mainLogo from '../img/logo.png'
 class NavbarWelcome extends Component {
   render() {
     return <Navbar light expand="md" styleName="NavbarWelcome" fixed="top">
-      <NavbarBrand href="/" className="navbar-brand">
+      <NavbarBrand href="/" styleName="navbar-brand">
         <img src={mainLogo} /><span>Trashbuddy</span>
       </NavbarBrand>
     </Navbar>

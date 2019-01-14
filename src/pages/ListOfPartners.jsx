@@ -22,8 +22,8 @@ import size from 'lodash/size'
 import { FiZap } from "react-icons/fi"
 import axios from 'axios'
 
-import NavbarMain from '../partials/Navbar/NavbarMain'
-import NavbarBottom from '../partials/Navbar/NavbarBottom'
+import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/NavbarBottom'
 import OfferForm from '../partials/OfferForm'
 import dummyImg from '../img/dummy-img.png'
 import styles from '../css/ListOfPartners.css'

@@ -1,13 +1,13 @@
-:local(.ToggleButton) .switch {
+:local .ToggleButton .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px; }
 
-:local(.ToggleButton) .switch input {
+:local .ToggleButton .switch input {
   display: none; }
 
-:local(.ToggleButton) .slider {
+:local .ToggleButton .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -19,7 +19,7 @@
   border-radius: 34px;
   transition: .4s; }
 
-:local(.ToggleButton) .slider:before {
+:local .ToggleButton .slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -31,13 +31,13 @@
   transition: .4s;
   border-radius: 50%; }
 
-:local(.ToggleButton) input:checked + .slider {
+:local .ToggleButton input:checked + .slider {
   background-color: #699e1b; }
 
-:local(.ToggleButton) input:focus + .slider {
+:local .ToggleButton input:focus + .slider {
   box-shadow: 0 0 1px #699e1b; }
 
-:local(.ToggleButton) input:checked + .slider:before {
+:local .ToggleButton input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px); }

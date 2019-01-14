@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-import Welcome from '../pages/Welcome'
 import SignIn from '../pages/SignIn'
-import SignInPartner from '../pages/SignInPartner'
 import SignUp from '../pages/SignUp'
-import SignUpPartner from '../pages/SignUpPartner'
 import Home from '../pages/Home'
 import Setting from '../pages/Setting'
 import Offer from '../pages/Offer'
@@ -61,11 +58,9 @@ class Routers extends Component {
     return <ErrorBoundary>
       <Router>
         <Switch>
-          <PublicRoute exact path="/" component={Welcome} />
+          <PublicRoute exact path="/" component={SignIn} />
           <PublicRoute path="/sign_in" component={SignIn} />
-          <PublicRoute path="/sign_in_partner" component={SignInPartner} />
           <PublicRoute path="/sign_up" component={SignUp} />
-          <PublicRoute path="/sign_up_partner" component={SignUpPartner} />
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/search" component={ListOfPartners} />
           <PrivateRoute path="/my_ad" component={MyAd} />

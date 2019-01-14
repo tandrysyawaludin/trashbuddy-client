@@ -1,6 +1,2 @@
-:local(.SignIn) .container {
+:local(.SignIn) .singin-form-container {
   padding-top: 50px; }
-
-:local(.SignIn) .badge-partner {
-  font-size: 15px;
-  font-weight: normal; }

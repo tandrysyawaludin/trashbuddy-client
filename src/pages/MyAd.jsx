@@ -6,8 +6,8 @@ import {
   CardFooter
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import NavbarMain from '../partials/Navbar/NavbarMain'
-import NavbarBottom from '../partials/Navbar/NavbarBottom'
+import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/NavbarBottom'
 import CssModules from 'react-css-modules'
 
 import dummyImg from '../img/dummy-img.png'

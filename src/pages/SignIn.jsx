@@ -24,7 +24,7 @@ import mapKeys from 'lodash/mapKeys'
 import styles from '../css/SignIn.css'
 import loader from '../img/loader.svg'
 import Notify from '../partials/Notify'
-import NavbarWelcome from '../partials/Navbar/NavbarWelcome'
+import NavbarWelcome from '../partials/NavbarWelcome'
 import { Auth } from '../helper/CheckAuth'
 
 class SignIn extends Component {
@@ -182,12 +182,12 @@ class SignIn extends Component {
       {this.renderAlert()}
       <NavbarWelcome />
       <div styleName="SignIn">
-        <Container>
+        <Container className="singin-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
               <Card>
                 <CardBody>
-                  <CardTitle className="text-center">Sign In</CardTitle>
+                  <CardTitle className="text-center">Sign iIn</CardTitle>
                   {this.renderFormSignin()}
                   {this.renderLinks()}
                 </CardBody>

@@ -15,7 +15,7 @@ import {
   Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import NavbarWelcome from '../partials/Navbar/NavbarWelcome';
+import NavbarWelcome from '../partials/NavbarWelcome';
 
 import '../css/OfferForm.css';
 class OfferForm extends Component {
@@ -26,7 +26,7 @@ class OfferForm extends Component {
       area: 1
     }
   }
-
+  
   submitToOffer = () => {
     this.props.history.push(`/home`)
   }
@@ -39,7 +39,7 @@ class OfferForm extends Component {
     return (
       <Fragment>
         <NavbarWelcome />
-        <Container>
+        <Container className="singin-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
               <Card>
@@ -73,7 +73,7 @@ class OfferForm extends Component {
                     </CardText>
                     <FormGroup>
                       <Button color="main" size="sm" onMouseDown={this.submitToOffer}>Offer</Button>
-                      <Button outline size="sm" onMouseDown={this.props.handleCancelOffer}>Cancel</Button>
+                      <Button outline size="sm" onMouseDown={this.props.handleCancelOffer}>Cancel</Button>                      
                     </FormGroup>
                   </Form>
                 </CardBody>

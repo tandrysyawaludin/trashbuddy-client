@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import CssModules from 'react-css-modules';
 import { FiHome, FiSettings, FiMail, FiRadio } from "react-icons/fi";
 
-import styles from '../../css/NavbarBottom.css';
+import styles from '../css/NavbarBottom.css';
 class NavbarBottom extends Component {
   constructor(props) {
     super(props);

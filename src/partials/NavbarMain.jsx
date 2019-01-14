@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 import CssModules from 'react-css-modules';
 import { FiArrowLeft, FiX, FiSearch } from "react-icons/fi";
 
-import styles from '../../css/NavbarMain.css';
-import mainLogo from '../../img/logo.png'
+import styles from '../css/NavbarMain.css';
+import mainLogo from '../img/logo.png'
 
 class NavbarMain extends Component {
   constructor(props) {
