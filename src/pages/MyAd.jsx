@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Container, Row, Col,
   Card, CardImg, CardText, CardBody,
@@ -24,7 +24,7 @@ class MyAd extends Component {
   }
 
   renderPartners() {
-    return (
+    return <div styleName="MyAd">
       <Container className="basic-container">
         <Row className="box">
           <Col md={{ size: 4, offset: 4 }}>
@@ -44,22 +44,20 @@ class MyAd extends Component {
         </Row>
 
         <Row className="toggle-box">
-          <Col md={{ size: 4, offset: 4}}>
-            <ToggleButton onChange={this.changeAdStatus}/>
+          <Col md={{ size: 4, offset: 4 }}>
+            <ToggleButton onChange={this.changeAdStatus} />
           </Col>
         </Row>
       </Container>
-    )
+    </div>
   }
 
   render() {
-    return (
-      <div styleName="MyAd">
-        <NavbarMain prevRoute={this.props.history.goBack} />
-        {this.state.showOfferForm ? this.renderOfferForm() : this.renderPartners()}
-        <NavbarBottom currentRoute={this.props.location.pathname} />
-      </div>
-    )
+    return <Fragment>
+      <NavbarMain prevRoute={this.props.history.goBack} />
+      {this.state.showOfferForm ? this.renderOfferForm() : this.renderPartners()}
+      <NavbarBottom currentRoute={this.props.location.pathname} />
+    </Fragment>
   }
 }
 

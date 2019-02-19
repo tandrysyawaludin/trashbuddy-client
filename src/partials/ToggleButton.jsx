@@ -11,7 +11,7 @@ class ToggleButton extends Component {
     return (
       <div styleName="ToggleButton">
         <label className="switch">
-          <input type="checkbox" onChange={this.props.onChange}/>
+          <input type="checkbox" onChange={this.props.onChange} />
           <span className="slider"></span>
         </label>
       </div>
