@@ -26,24 +26,24 @@ class MyAd extends Component {
   renderPartners() {
     return (
       <Container className="basic-container">
-        <Row styleName="box">
+        <Row className="box">
           <Col md={{ size: 4, offset: 4 }}>
             <Card>
               <CardImg top width="100%" src={dummyImg} alt="Card image cap" />
               <CardBody>
                 <CardTitle>Tandry Syawaludin Soedijanto</CardTitle>
-                <CardSubtitle styleName="trash-category"><span>Sampah Plastik PVC</span></CardSubtitle>
-                <CardText styleName="caption">Jalan Duku 1 Blok C2/25 Pondok Sejahtera, Kelurahan Kutabaru, Kecamatan Pasar Kemis, Kabupaten Tangerang, Banten, 11561</CardText>
+                <CardSubtitle className="trash-category"><span>Sampah Plastik PVC</span></CardSubtitle>
+                <CardText className="caption">Jalan Duku 1 Blok C2/25 Pondok Sejahtera, Kelurahan Kutabaru, Kecamatan Pasar Kemis, Kabupaten Tangerang, Banten, 11561</CardText>
                 <Button size="sm" block outline>Edit</Button>
               </CardBody>
-              <CardFooter styleName={this.state.AdStatus ? 'ad-status active' : 'ad-status'}>
+              <CardFooter className={this.state.AdStatus ? 'ad-status active' : 'ad-status'}>
                 Ad is {this.state.AdStatus ? "Active" : "Deactive"}
               </CardFooter>
             </Card>
           </Col>
         </Row>
 
-        <Row styleName="toggle-box">
+        <Row className="toggle-box">
           <Col md={{ size: 4, offset: 4}}>
             <ToggleButton onChange={this.changeAdStatus}/>
           </Col>

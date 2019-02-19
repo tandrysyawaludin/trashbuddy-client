@@ -10,9 +10,9 @@ class ToggleButton extends Component {
   render() {
     return (
       <div styleName="ToggleButton">
-        <label styleName="switch">
+        <label className="switch">
           <input type="checkbox" onChange={this.props.onChange}/>
-          <span styleName="slider"></span>
+          <span className="slider"></span>
         </label>
       </div>
     )
